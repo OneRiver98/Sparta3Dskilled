@@ -14,6 +14,7 @@ public class PlyaerInputController : MonoBehaviour
             CharacterManager.Instance.Player.inputDirectMove = Vector2.zero;
         }
         CharacterManager.Instance.Player.CalCulDirecMove(ref CharacterManager.Instance.Player.inputDirectMove, ref CharacterManager.Instance.Player.playerDirectMove);
-        Debug.Log(CharacterManager.Instance.Player.playerDirectMove);
     }
+
+    //OnJumpInput은 PlayerController 스크립트에 있음.
 }
