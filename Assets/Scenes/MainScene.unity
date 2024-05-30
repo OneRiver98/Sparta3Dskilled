@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 191741839}
   - component: {fileID: 191741838}
   - component: {fileID: 191741837}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,7 +577,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025294025}
   serializedVersion: 4
-  m_Mass: 20
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -638,7 +638,19 @@ MonoBehaviour:
     m_ActionId: 0e702b5c-7955-4c39-a7a8-5bc145a51660
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1025294032}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJumpInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1c41cf5f-852b-408c-b66e-01163fe7e771
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
@@ -646,7 +658,19 @@ MonoBehaviour:
     m_ActionId: e81a3312-07b0-4e20-b7c4-3e21e6f34dde
     m_ActionName: Player/Interaction[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1025294031}
+        m_TargetAssemblyTypeName: PlyaerInputController, Assembly-CSharp
+        m_MethodName: OnLookInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e2ed949d-8ad3-4ea8-ba0e-14332a3daf94
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
@@ -682,13 +706,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bffa10546b734654f81383bc8a9ac00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 7
   Health: 100
   stamina: 100
-  jumpPower: 50
+  jumpPower: 5
+  minXLook: -65
+  maxXLook: 65
+  lookSensitivity: 0.3
+  groundRayerMask: 0
   inputDirectMove: {x: 0, y: 0}
   playerDirectMove: {x: 0, y: 0, z: 0}
+  mouseDelta: {x: 0, y: 0}
   _rigidbody: {fileID: 0}
+  cameraContainer: {fileID: 1635711988}
 --- !u!1 &1635711987
 GameObject:
   m_ObjectHideFlags: 0

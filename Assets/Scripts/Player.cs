@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 
         for (int i = 0; i < rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i], 2f, groundRayerMask))
+            if (Physics.Raycast(rays[i], 1.5f, groundRayerMask))
             {
                 return true;
             }
