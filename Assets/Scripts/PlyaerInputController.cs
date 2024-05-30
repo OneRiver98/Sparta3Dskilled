@@ -17,4 +17,9 @@ public class PlyaerInputController : MonoBehaviour
     }
 
     //OnJumpInput은 PlayerController 스크립트에 있음.
+
+    public void OnLookInput(InputAction.CallbackContext context)
+    {
+        CharacterManager.Instance.Player.mouseDelta = context.ReadValue<Vector2>();
+    }
 }

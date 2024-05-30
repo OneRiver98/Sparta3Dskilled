@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem.HID;
 
 public class Player : MonoBehaviour 
 {
@@ -9,14 +8,22 @@ public class Player : MonoBehaviour
     [Range(0, 100)]public float stamina;
     [Range(0, 100)]public float jumpPower;
 
-    [HideInInspector] public int groundRayerMask;
+    [Range(-100, 100)]public float minXLook;
+    [Range(-100, 100)]public float maxXLook;
+    [Range(0, 100)]public float lookSensitivity;
+    private float camCurXRot;
+
+    [HideInInspector]public int groundRayerMask;
 
     [HideInInspector]public Vector2 inputDirectMove = Vector2.zero;
     [HideInInspector]public Vector3 playerDirectMove = Vector3.zero;
+    
+    [HideInInspector]public Vector2 mouseDelta = Vector2.zero;
 
     [HideInInspector]public Rigidbody _rigidbody;
 
-    
+    [SerializeField]private Transform cameraContainer;
+
     private void Awake()
     {
         CharacterManager.Instance.Player = this;
@@ -24,14 +31,14 @@ public class Player : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void CalCulDirecMove(ref Vector2 direction1, ref Vector3 direction2)
+    public void CalCulDirecMove(ref Vector2 vector2, ref Vector3 vector3) // 인풋시스템 wasd 받은 값을 vector3로 바꿔서 앞뒤좌우 움직임 계산
     {
-        direction2 = transform.forward * direction1.y + transform.right * direction1.x;
-        direction2.y = _rigidbody.velocity.y;
+        vector3 = transform.forward * vector2.y + transform.right * vector2.x;
     }
 
     public void ApplyMove(Vector3 direction)
     {
+        direction *= speed;
         direction.y = _rigidbody.velocity.y;
         _rigidbody.velocity = direction;
     }
@@ -55,5 +62,14 @@ public class Player : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void CameraLookRotate()
+    {
+        camCurXRot += mouseDelta.y * lookSensitivity;
+        camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
+        cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
+
+        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
     }
 }

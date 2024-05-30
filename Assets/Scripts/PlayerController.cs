@@ -8,6 +8,11 @@ public class PlayerController : Player
          ApplyMove(playerDirectMove);
     }
 
+    private void LateUpdate()
+    {
+        CameraLookRotate();
+    }
+
     public void OnJumpInput(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.IsGrounded())
