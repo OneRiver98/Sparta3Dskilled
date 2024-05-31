@@ -4,6 +4,7 @@ public class Player : MonoBehaviour
 {
     [Range(0, 20)]public float speed;
     [Range(0, 100)]public float jumpPower;
+    protected float trueJumpPower;
     [HideInInspector]public bool jumping = false;
 
     [Range(-100, 100)]public float minXLook;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     [HideInInspector]public Vector2 mouseDelta = Vector2.zero;
 
     [HideInInspector]public Rigidbody _rigidbody;
+    public Animator jumpPlatformAnim;
 
     [SerializeField]private Transform cameraContainer;
 
@@ -30,6 +32,8 @@ public class Player : MonoBehaviour
         groundRayerMask = LayerMask.GetMask("Ground");
         _rigidbody = GetComponent<Rigidbody>();
         conditionController = GetComponent<ConditionController>();
+
+        trueJumpPower = jumpPower;
     }
 
     public void CalCulDirecMove(ref Vector2 vector2, ref Vector3 vector3) // 인풋시스템 wasd 받은 값을 vector3로 바꿔서 앞뒤좌우 움직임 계산
@@ -72,5 +76,22 @@ public class Player : MonoBehaviour
         cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
 
         transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("JumpingPlatform"))
+        {
+            trueJumpPower = 30;
+        }
+    }
+
+    public void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("JumpingPlatform"))
+        {
+            trueJumpPower = jumpPower;
+            jumpPlatformAnim.SetTrigger("useJump");
+        }
     }
 }

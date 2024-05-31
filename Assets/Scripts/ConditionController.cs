@@ -12,7 +12,7 @@ public class ConditionController : MonoBehaviour
 
     private void Update()
     {
-        if(CharacterManager.Instance.Player.inputDirectMove == noMove) // 움직일 때 스테미나 감소
+        if(CharacterManager.Instance.Player.inputDirectMove == noMove) // 움직일 때 스테미나 감소, 안 움직이면 스테미나 회복
         {
             stamina.Add(stamina.passiveValue * Time.deltaTime);
         }

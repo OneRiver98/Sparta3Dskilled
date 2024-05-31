@@ -20,7 +20,7 @@ public class PlayerController : Player
     {
         if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.IsGrounded() && CharacterManager.Instance.Player.conditionController.stamina.statValue >= 5.0f)
         {
-            _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            _rigidbody.AddForce(Vector2.up * trueJumpPower, ForceMode.Impulse);
             CharacterManager.Instance.Player.jumping = true;
         }
     }
