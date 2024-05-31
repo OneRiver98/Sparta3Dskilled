@@ -5,7 +5,10 @@ public class PlayerController : Player
 {
     private void FixedUpdate()
     {
-         ApplyMove(playerDirectMove);
+        if (CharacterManager.Instance.Player.conditionController.stamina.statValue >= 0f)
+        {
+            ApplyMove(playerDirectMove);
+        }
     }
 
     private void LateUpdate()
@@ -15,9 +18,10 @@ public class PlayerController : Player
 
     public void OnJumpInput(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.IsGrounded())
+        if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.IsGrounded() && CharacterManager.Instance.Player.conditionController.stamina.statValue >= 5.0f)
         {
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            CharacterManager.Instance.Player.jumping = true;
         }
     }
 }

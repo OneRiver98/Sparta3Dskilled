@@ -300,6 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 280148789}
   - component: {fileID: 280148791}
+  - component: {fileID: 280148792}
   - component: {fileID: 280148790}
   m_Layer: 5
   m_Name: Stamina
@@ -366,6 +367,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280148788}
   m_CullTransparentMesh: 1
+--- !u!114 &280148792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280148788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af59990f5f34fa94d8dd7eb222d53ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statValue: 100
+  passiveValue: 1
+  uiBar: {fileID: 294541987}
 --- !u!1 &294541985
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,6 +862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 987392256}
   - component: {fileID: 987392258}
+  - component: {fileID: 987392259}
   - component: {fileID: 987392257}
   m_Layer: 5
   m_Name: Health
@@ -912,6 +929,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987392255}
   m_CullTransparentMesh: 1
+--- !u!114 &987392259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987392255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af59990f5f34fa94d8dd7eb222d53ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statValue: 100
+  passiveValue: 1
+  uiBar: {fileID: 71906879}
 --- !u!1 &1025294025
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +958,7 @@ GameObject:
   - component: {fileID: 1025294030}
   - component: {fileID: 1025294032}
   - component: {fileID: 1025294031}
+  - component: {fileID: 1025294033}
   m_Layer: 0
   m_Name: Plyaer
   m_TagString: Untagged
@@ -1111,9 +1144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  Health: 100
-  stamina: 100
   jumpPower: 5
+  jumping: 0
   minXLook: -65
   maxXLook: 65
   lookSensitivity: 0.3
@@ -1123,6 +1155,20 @@ MonoBehaviour:
   mouseDelta: {x: 0, y: 0}
   _rigidbody: {fileID: 0}
   cameraContainer: {fileID: 1635711988}
+  conditionController: {fileID: 0}
+--- !u!114 &1025294033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025294025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898aa28f4e9838644a4737e18755524a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCondition: {fileID: 0}
 --- !u!1 &1344833775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,8 +1247,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1499625048}
   - component: {fileID: 1499625049}
+  - component: {fileID: 1499625050}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Condition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1255,6 +1302,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1499625050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499625047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9492e268f0d18a34f9d0cb6a9c96cf8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 987392259}
+  stamina: {fileID: 280148792}
 --- !u!1 &1635711987
 GameObject:
   m_ObjectHideFlags: 0

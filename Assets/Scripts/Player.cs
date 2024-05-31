@@ -3,10 +3,8 @@
 public class Player : MonoBehaviour 
 {
     [Range(0, 20)]public float speed;
-
-    [Range(0, 100)]public float Health;
-    [Range(0, 100)]public float stamina;
     [Range(0, 100)]public float jumpPower;
+    [HideInInspector]public bool jumping = false;
 
     [Range(-100, 100)]public float minXLook;
     [Range(-100, 100)]public float maxXLook;
@@ -24,11 +22,14 @@ public class Player : MonoBehaviour
 
     [SerializeField]private Transform cameraContainer;
 
+    [HideInInspector]public ConditionController conditionController;
+
     private void Awake()
     {
         CharacterManager.Instance.Player = this;
         groundRayerMask = LayerMask.GetMask("Ground");
         _rigidbody = GetComponent<Rigidbody>();
+        conditionController = GetComponent<ConditionController>();
     }
 
     public void CalCulDirecMove(ref Vector2 vector2, ref Vector3 vector3) // 인풋시스템 wasd 받은 값을 vector3로 바꿔서 앞뒤좌우 움직임 계산
